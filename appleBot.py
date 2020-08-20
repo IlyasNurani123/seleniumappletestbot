@@ -8,9 +8,11 @@ from selenium.common.exceptions import TimeoutException
 import time
 time.sleep(1)
 
+
+co = webdriver.ChromeOptions()
 GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-co = webdriver.ChromeOptions()
+
 co.add_argument("log-level=3")
 co.add_argument("--headless")
 co.add_argument('--disable-gpu')
@@ -19,7 +21,7 @@ co.binary_location = GOOGLE_CHROME_PATH
 # chrome_options = Options()
 # chrome_options.add_argument("--dns-prefetch-disable")
 def apple_items_add_to_cart_test():
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(executable_path = CHROMEDRIVER_PATH, chrome_options=co)
     driver.get('https://www.apple.com/')
     while True:
       driver.refresh()
